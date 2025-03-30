@@ -109,15 +109,11 @@ div.profile {
     /* display: none !important; */
 }
 
-#image {
-    /* height: 20em !important; */
-    /* width: 20em !important; */
-}
-
 a {
     text-decoration: none !important;
 }
 
-img {
-    /* margin-top: 50% !important; */
+.logo {
+    /* height: 400px;
+    width: 400px; */
 }
