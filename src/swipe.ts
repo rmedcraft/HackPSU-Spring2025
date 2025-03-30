@@ -16,13 +16,20 @@ let swipeRight = 0;
 
 updateData();
 function updateData() {
+    const edu = document.getElementById("education");
+    const work = document.getElementById("experience");
+    const skills = document.getElementById("skills");
+
+    clearChildren(edu);
+    clearChildren(work);
+    clearChildren(skills);
+
     if (i >= length) {
         // document.getElementById("title").innerHTML = "You've seen all availablle applicants";
         return;
     } else {
         document.getElementById("name").innerHTML = response.data[i].name;
 
-        const edu = document.getElementById("education");
         response.data[i].education.forEach((education) => {
             let li = document.createElement("li");
             li.appendChild(document.createTextNode(education));
@@ -32,7 +39,6 @@ function updateData() {
         const image = document.getElementById("image") as HTMLImageElement;
         image.src = response.data[i].image;
 
-        const work = document.getElementById("experience");
         response.data[i].experience.forEach((job) => {
             let li = document.createElement("li");
             li.appendChild(document.createTextNode(job));
@@ -40,17 +46,22 @@ function updateData() {
         });
 
 
-        const skills = document.getElementById("skills");
         response.data[i].skills.forEach((skill) => {
             let li = document.createElement("li");
             li.appendChild(document.createTextNode(skill));
             skills.appendChild(li);
         });
 
-        document.getElementById("phone").innerHTML = response.data[0].contact["phone"];
-        document.getElementById("email").innerHTML = response.data[0].contact["email"];
-        document.getElementById("location").innerHTML = response.data[0].location;
+        document.getElementById("phone").innerHTML = response.data[i].contact["phone"];
+        document.getElementById("email").innerHTML = response.data[i].contact["email"];
+        document.getElementById("location").innerHTML = response.data[i].location;
     }
+}
+
+function clearChildren(node) {
+    node.querySelectorAll("li").forEach((thing) => {
+        thing.remove();
+    });
 }
 
 window.addEventListener('keydown', keyDownListener, false);
