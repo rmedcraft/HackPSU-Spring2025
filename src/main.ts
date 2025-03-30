@@ -35,16 +35,24 @@ document.getElementById("email").innerHTML = response.data[0].contact["email"];
 document.getElementById("location").innerHTML = response.data[0].location;
 
 // // input:
-// const nameInput = document.getElementById("nameIn") as HTMLInputElement;
-// let name = "";
-// nameInput.onchange = (e) => {
-//     name = (e.target as HTMLInputElement).value;
-//     console.log(name);
-// };
+const nameInput = document.getElementById("nameIn") as HTMLInputElement;
+let name = "";
+nameInput.onchange = (e) => {
+    name = (e.target as HTMLInputElement).value;
+    console.log(name);
+};
 
-// let education = [];
-// const eduIn = document.getElementById("eduIn");
+let education = [];
+const eduIn = document.getElementById("eduIn");
+let liList = [];
 
-// document.getElementById("edu+").onclick = () => {
+document.getElementById("edu+").onclick = () => {
+    let li = document.createElement("li");
+    li.appendChild(document.createElement("input"));
+    eduIn.appendChild(li);
+    liList.push(li);
+};
 
-// };
+document.getElementById("edu-").onclick = () => {
+    eduIn.removeChild(liList.pop());
+};
