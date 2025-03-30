@@ -39,47 +39,43 @@ const nameInput = document.getElementById("nameIn") as HTMLInputElement;
 let name = "";
 nameInput.onchange = (e) => {
     name = (e.target as HTMLInputElement).value;
-    console.log(name);
 };
 
 const eduIn = document.getElementById("eduIn");
-let liList = [];
+let eduLiList = [];
 let eduList = [""];
 
-setOnChange();
+setEduOnChange();
 
 document.getElementById("edu+").onclick = () => {
     let li = document.createElement("li");
     const child = document.createElement("input");
     li.appendChild(child);
     eduIn.appendChild(li);
-    liList.push(li);
+    eduLiList.push(li);
 
-    setOnChange();
+    setEduOnChange();
 
     eduList.push("");
-    console.log(eduIn.querySelectorAll("input").length);
 };
 
 document.getElementById("edu-").onclick = () => {
-    eduIn.removeChild(liList.pop());
-    console.log(eduIn.querySelectorAll("input").length);
-    setOnChange();
+    eduIn.removeChild(eduLiList.pop());
+    setEduOnChange();
 };
 
 
-function setOnChange() {
+function setEduOnChange() {
     eduIn.querySelectorAll("input").forEach((element) => {
         const child = element as HTMLInputElement;
         child.onchange = (e) => {
-            eduList[getIndex(child)] = (e.target as HTMLInputElement).value;
-            console.log(getIndex(child), eduList);
+            eduList[getIndex(child, eduIn)] = (e.target as HTMLInputElement).value;
         };
     });
 }
 
-function getIndex(node) {
-    var childs = eduIn.querySelectorAll("input");
+function getIndex(node, parent) {
+    var childs = parent.querySelectorAll("input");
     var count = 0;
     for (var i = 0; i < childs.length; i++) {
         if (node === childs[i]) break;
@@ -87,3 +83,89 @@ function getIndex(node) {
     }
     return count;
 }
+
+const expIn = document.getElementById("expIn");
+let expLiList = [];
+let expList = [""];
+
+setExpOnChange();
+
+document.getElementById("exp+").onclick = () => {
+    let li = document.createElement("li");
+    const child = document.createElement("input");
+    li.appendChild(child);
+    expIn.appendChild(li);
+    expLiList.push(li);
+
+    setExpOnChange();
+
+    expList.push("");
+};
+
+document.getElementById("exp-").onclick = () => {
+    expIn.removeChild(expLiList.pop());
+    setExpOnChange();
+};
+
+function setExpOnChange() {
+    expIn.querySelectorAll("input").forEach((element) => {
+        const child = element as HTMLInputElement;
+        child.onchange = (e) => {
+            expList[getIndex(child, expIn)] = (e.target as HTMLInputElement).value;
+            console.log(expList);
+        };
+    });
+}
+
+
+const skillIn = document.getElementById("skillIn");
+let skillLiList = [];
+let skillList = [""];
+
+setSkillOnChange();
+
+document.getElementById("skill+").onclick = () => {
+    let li = document.createElement("li");
+    const child = document.createElement("input");
+    li.appendChild(child);
+    skillIn.appendChild(li);
+    skillLiList.push(li);
+
+    setSkillOnChange();
+
+    skillList.push("");
+};
+
+document.getElementById("skill-").onclick = () => {
+    skillIn.removeChild(skillLiList.pop());
+    setSkillOnChange();
+};
+
+function setSkillOnChange() {
+    skillIn.querySelectorAll("input").forEach((element) => {
+        const child = element as HTMLInputElement;
+        child.onchange = (e) => {
+            skillList[getIndex(child, skillIn)] = (e.target as HTMLInputElement).value;
+            console.log(skillList);
+        };
+    });
+}
+
+const phoneInput = document.getElementById("phoneIn") as HTMLInputElement;
+let phone = "";
+phoneInput.onchange = (e) => {
+    phone = (e.target as HTMLInputElement).value;
+};
+
+const emailInput = document.getElementById("emailIn") as HTMLInputElement;
+let email = "";
+emailInput.onchange = (e) => {
+    email = (e.target as HTMLInputElement).value;
+};
+
+const locInput = document.getElementById("locationIn") as HTMLInputElement;
+let loc = "";
+locInput.onchange = (e) => {
+    loc = (e.target as HTMLInputElement).value;
+};
+
