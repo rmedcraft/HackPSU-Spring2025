@@ -42,17 +42,48 @@ nameInput.onchange = (e) => {
     console.log(name);
 };
 
-let education = [];
 const eduIn = document.getElementById("eduIn");
 let liList = [];
+let eduList = [""];
+
+setOnChange();
 
 document.getElementById("edu+").onclick = () => {
     let li = document.createElement("li");
-    li.appendChild(document.createElement("input"));
+    const child = document.createElement("input");
+    li.appendChild(child);
     eduIn.appendChild(li);
     liList.push(li);
+
+    setOnChange();
+
+    eduList.push("");
+    console.log(eduIn.querySelectorAll("input").length);
 };
 
 document.getElementById("edu-").onclick = () => {
     eduIn.removeChild(liList.pop());
+    console.log(eduIn.querySelectorAll("input").length);
+    setOnChange();
 };
+
+
+function setOnChange() {
+    eduIn.querySelectorAll("input").forEach((element) => {
+        const child = element as HTMLInputElement;
+        child.onchange = (e) => {
+            eduList[getIndex(child)] = (e.target as HTMLInputElement).value;
+            console.log(getIndex(child), eduList);
+        };
+    });
+}
+
+function getIndex(node) {
+    var childs = eduIn.querySelectorAll("input");
+    var count = 0;
+    for (var i = 0; i < childs.length; i++) {
+        if (node === childs[i]) break;
+        if (childs[i].toString() !== '[object Text]') count++;
+    }
+    return count;
+}
