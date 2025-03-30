@@ -2,7 +2,7 @@ import axios from "axios";
 
 const response = await axios.get("http://localhost:3000/resumes");
 
-// console.log(response.data);
+// output: 
 document.getElementById("name").innerHTML = response.data[0].name;
 
 const edu = document.getElementById("education");
@@ -11,6 +11,9 @@ response.data[0].education.forEach((education) => {
     li.appendChild(document.createTextNode(education));
     edu.appendChild(li);
 });
+
+const image = document.getElementById("image") as HTMLImageElement;
+image.src = response.data[0].image;
 
 const work = document.getElementById("experience");
 response.data[0].experience.forEach((job) => {
@@ -30,3 +33,18 @@ response.data[0].skills.forEach((skill) => {
 document.getElementById("phone").innerHTML = response.data[0].contact["phone"];
 document.getElementById("email").innerHTML = response.data[0].contact["email"];
 document.getElementById("location").innerHTML = response.data[0].location;
+
+// // input:
+// const nameInput = document.getElementById("nameIn") as HTMLInputElement;
+// let name = "";
+// nameInput.onchange = (e) => {
+//     name = (e.target as HTMLInputElement).value;
+//     console.log(name);
+// };
+
+// let education = [];
+// const eduIn = document.getElementById("eduIn");
+
+// document.getElementById("edu+").onclick = () => {
+
+// };
