@@ -1,0 +1,40 @@
+/* h1 {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin: auto;
+    width: 40%;
+    color: brown;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-size: 5rem;
+} */
+
+img {
+    /* display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%; */
+}
+
+body {
+    /* display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%; */
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+div.profile {
+    border: red 100px !important;
+    /* display: none !important; */
+}
+
+#headshot {
+    height: 20em;
+    width: 20em;
+}
+
+.content a {
+    text-decoration: none !important;
+}
