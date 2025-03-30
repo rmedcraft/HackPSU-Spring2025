@@ -1,38 +1,79 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <link rel="stylesheet" href="styles.css">
-    <h1>Employr</h1>
-  </head>
-  <body>
-    <img src="/StockGuy.jpg" alt="A smiling man dressed professionally" width="300" height="400">
-    <h2>Chad Jobsearcher</h2>
-    <h2>Profile:</h2>
 
-    <p>Summary: I am a cool guy who is looking for a cool job to make cool money to pay my cool rent and not die.
-       My specialty is applying fasteners to fruits.</p>
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+</head>
 
-    <h3>Education: Graduated magna cum laude from Smartguy University</h3>
+<body>
+    <div id="app"></div>
+    <h1 id="title">HELP!!!</h1>
+    <img id="image">
+    <p>Name: <span id="name"></span></p>
+    <p>Education: </p>
+    <ul id="education"></ul>
+    <p>Experience: </p>
+    <ul id="experience"></ul>
+    <p>Skills: </p>
+    <ul id="skills"></ul>
+    <p>Phone: <span id="phone"></span></p>
+    <p>Email: <span id="email"></span></p>
+    <p>Location: <span id="location"></span></p>
+    <hr>
 
-    <h3>Experience:</h3>
+    <!--  -->
+    <!-- EMPLOYEE INPUT -->
+    <!--  -->
 
-    <h4>Banana Nailers LLC</h4>
-    
-    <ul>
-      <li>April 1, 2009 - Present</li>
-      <li>Hammered nails into bananas.</li>
+    <label>Name: </label>
+    <input type="text" id="nameIn">
+    <br>
+    <label>Education: </label>
+    <ul id="eduIn">
+        <li><input type="text"></li>
     </ul>
+    <button id="edu+">+</button>
+    <button id="edu-">-</button>
+    <br>
 
-    <h4>Kumquat Staplers Co.</h4>
-    <ul>
-      <li>October 27, 2007 - March 23, 2009</li>
-      <li>Stapled kumquats to the Kumquat Wall.</li>
+    <label>Experience: </label>
+    <ul id="expIn">
+        <li><input type="text"></li>
     </ul>
+    <button id="exp+">+</button>
+    <button id="exp-">-</button>
+    <br>
 
-    <h3>Accomplishments:</h3>
-    <ul>
-      <li>I have been promoted 60 times.</li>
-      <li>I was recognized as the Master Stapler at Kumquat Staplers Co.</li>
+    <label>Skills: </label>
+    <ul id="skillIn">
+        <li><input type="text"></li>
     </ul>
-  </body>
+    <button id="skill+">+</button>
+    <button id="skill-">-</button>
+    <br>
+
+    <label>Email: </label>
+    <input type="text" id="emailIn">
+    <br>
+
+    <label>Phone: </label>
+    <input type="text" id="phoneIn">
+    <br>
+
+
+    <label>Location: </label>
+    <input type="text" id="locationIn">
+    <br>
+
+    <label>Image Link: </label>
+    <input type="text" id="imgIn">
+    <br>
+
+    <button id="submit">SUBMIT</button>
+    <script type="module" src="/src/main.ts"></script>
+</body>
+
 </html>
