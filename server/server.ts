@@ -57,6 +57,20 @@ app.get('/resumes', async (req, res) => {
     }
 });
 
+// for adding a new resume
+app.post('/resume', async (req, res) => {
+    const resume = req.body;
+    try {
+        const collection = db.collection("Resumes");
+        await collection.insertOne(resume);
+
+        res.status(201).json({ message: "yippee" }); // Return the new student's data with ID
+
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
