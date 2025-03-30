@@ -1,4 +1,5 @@
 import axios from "axios";
+import { error } from "console";
 
 const response = await axios.get("http://localhost:3000/resumes");
 
@@ -169,3 +170,21 @@ locInput.onchange = (e) => {
     loc = (e.target as HTMLInputElement).value;
 };
 
+const submitButton = document.getElementById("submit");
+submitButton.onclick = async () => {
+    const resume = {
+        "name": name,
+        "education": eduList,
+        "experience": expList,
+        "skills": skillList,
+        "contact": {
+            "email": email,
+            "phone": phone
+        },
+        "location": loc
+    };
+
+
+    await axios.post("http://localhost:3000/resume", resume);
+
+};
