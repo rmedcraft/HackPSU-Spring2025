@@ -1,49 +1,7 @@
 import axios from "axios";
-import { error } from "console";
 
-const response = await axios.get("http://localhost:3000/resumes");
+const DEFAULT_PFP = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapers.com%2Fimages%2Fhd%2Fblank-default-pfp-wue0zko1dfxs9z2c.jpg&f=1&nofb=1&ipt=6ad5068598eae061197c0bafbcc8482cf97b7524ce2255898cbf1e1ed4e074e7&ipo=images";
 
-const length = response.data;
-let i = 0;
-// output: 
-
-updateData();
-function updateData() {
-
-    document.getElementById("name").innerHTML = response.data[i].name;
-
-    const edu = document.getElementById("education");
-    response.data[i].education.forEach((education) => {
-        let li = document.createElement("li");
-        li.appendChild(document.createTextNode(education));
-        edu.appendChild(li);
-    });
-
-    const image = document.getElementById("image") as HTMLImageElement;
-    image.src = response.data[i].image;
-
-    const work = document.getElementById("experience");
-    response.data[i].experience.forEach((job) => {
-        let li = document.createElement("li");
-        li.appendChild(document.createTextNode(job));
-        work.appendChild(li);
-    });
-
-
-    const skills = document.getElementById("skills");
-    response.data[i].skills.forEach((skill) => {
-        let li = document.createElement("li");
-        li.appendChild(document.createTextNode(skill));
-        skills.appendChild(li);
-    });
-
-    document.getElementById("phone").innerHTML = response.data[0].contact["phone"];
-    document.getElementById("email").innerHTML = response.data[0].contact["email"];
-    document.getElementById("location").innerHTML = response.data[0].location;
-
-}
-
-// // input:
 const nameInput = document.getElementById("nameIn") as HTMLInputElement;
 let name = "";
 nameInput.onchange = (e) => {
@@ -196,6 +154,10 @@ function removeEmptyStrings(arr) {
 
 const submitButton = document.getElementById("submit");
 submitButton.onclick = async () => {
+    if (img === null || img.length === 0) {
+        img = DEFAULT_PFP;
+    }
+
     const resume = {
         "name": name,
         "education": removeEmptyStrings(eduList),
@@ -211,14 +173,37 @@ submitButton.onclick = async () => {
 
 
     await axios.post("http://localhost:3000/resume", resume);
+
+    // reset all text fields
+    locInput.value = "";
+    imgInput.value = "";
+    nameInput.value = "";
+    emailInput.value = "";
+    phoneInput.value = "";
+    eduIn.querySelectorAll("input").forEach((input) => {
+        input.value = "";
+    });
+    expIn.querySelectorAll("input").forEach((input) => {
+        input.value = "";
+    });
+    skillIn.querySelectorAll("input").forEach((input) => {
+        input.value = "";
+    });
+    while (expLiList.length > 0) {
+        expIn.removeChild(expLiList.pop());
+    }
+    while (eduLiList.length > 0) {
+        eduIn.removeChild(eduLiList.pop());
+    }
+    while (skillLiList.length > 0) {
+        skillIn.removeChild(skillLiList.pop());
+    }
+
+    name = "";
+    email = "";
+    phone = "";
+    skillList = [""];
+    expList = [""];
+    eduList = [""];
 };
 
-window.addEventListener('keydown', keyDownListener, false);
-
-function keyDownListener(e: KeyboardEvent) {
-    console.log(e.key);
-    if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
-        i++;
-        updateData();
-    }
-}
