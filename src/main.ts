@@ -170,21 +170,38 @@ locInput.onchange = (e) => {
     loc = (e.target as HTMLInputElement).value;
 };
 
+const imgInput = document.getElementById("imgIn") as HTMLInputElement;
+let img = "";
+imgInput.onchange = (e) => {
+    img = (e.target as HTMLInputElement).value;
+};
+
+function removeEmptyStrings(arr) {
+    const newArr = [];
+    arr.forEach(element => {
+        if (element.length != 0) {
+            newArr.push(element);
+        }
+    });
+    return newArr;
+}
+
 const submitButton = document.getElementById("submit");
 submitButton.onclick = async () => {
     const resume = {
         "name": name,
-        "education": eduList,
-        "experience": expList,
-        "skills": skillList,
+        "education": removeEmptyStrings(eduList),
+        "experience": removeEmptyStrings(expList),
+        "skills": removeEmptyStrings(skillList),
         "contact": {
             "email": email,
             "phone": phone
         },
-        "location": loc
+        "location": loc,
+        "image": img
     };
 
 
     await axios.post("http://localhost:3000/resume", resume);
-
 };
+
