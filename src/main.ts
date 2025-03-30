@@ -3,37 +3,45 @@ import { error } from "console";
 
 const response = await axios.get("http://localhost:3000/resumes");
 
+const length = response.data;
+let i = 0;
 // output: 
-document.getElementById("name").innerHTML = response.data[0].name;
 
-const edu = document.getElementById("education");
-response.data[0].education.forEach((education) => {
-    let li = document.createElement("li");
-    li.appendChild(document.createTextNode(education));
-    edu.appendChild(li);
-});
+updateData();
+function updateData() {
 
-const image = document.getElementById("image") as HTMLImageElement;
-image.src = response.data[0].image;
+    document.getElementById("name").innerHTML = response.data[i].name;
 
-const work = document.getElementById("experience");
-response.data[0].experience.forEach((job) => {
-    let li = document.createElement("li");
-    li.appendChild(document.createTextNode(job));
-    work.appendChild(li);
-});
+    const edu = document.getElementById("education");
+    response.data[i].education.forEach((education) => {
+        let li = document.createElement("li");
+        li.appendChild(document.createTextNode(education));
+        edu.appendChild(li);
+    });
+
+    const image = document.getElementById("image") as HTMLImageElement;
+    image.src = response.data[i].image;
+
+    const work = document.getElementById("experience");
+    response.data[i].experience.forEach((job) => {
+        let li = document.createElement("li");
+        li.appendChild(document.createTextNode(job));
+        work.appendChild(li);
+    });
 
 
-const skills = document.getElementById("skills");
-response.data[0].skills.forEach((skill) => {
-    let li = document.createElement("li");
-    li.appendChild(document.createTextNode(skill));
-    skills.appendChild(li);
-});
+    const skills = document.getElementById("skills");
+    response.data[i].skills.forEach((skill) => {
+        let li = document.createElement("li");
+        li.appendChild(document.createTextNode(skill));
+        skills.appendChild(li);
+    });
 
-document.getElementById("phone").innerHTML = response.data[0].contact["phone"];
-document.getElementById("email").innerHTML = response.data[0].contact["email"];
-document.getElementById("location").innerHTML = response.data[0].location;
+    document.getElementById("phone").innerHTML = response.data[0].contact["phone"];
+    document.getElementById("email").innerHTML = response.data[0].contact["email"];
+    document.getElementById("location").innerHTML = response.data[0].location;
+
+}
 
 // // input:
 const nameInput = document.getElementById("nameIn") as HTMLInputElement;
@@ -205,3 +213,12 @@ submitButton.onclick = async () => {
     await axios.post("http://localhost:3000/resume", resume);
 };
 
+window.addEventListener('keydown', keyDownListener, false);
+
+function keyDownListener(e: KeyboardEvent) {
+    console.log(e.key);
+    if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+        i++;
+        updateData();
+    }
+}
